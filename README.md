@@ -1,94 +1,45 @@
-# Eliza
+Project Name
 
-## Edit the character files
+MoveDID Twitter Community Booster
 
-Open `src/character.ts` to modify the default character. Uncomment and edit.
+----------
 
-### Custom characters
+Description
 
-To load custom characters instead:
-- Use `pnpm start --characters="path/to/your/character.json"`
-- Multiple character files can be loaded simultaneously
+The MoveDID Twitter Community Booster is an AI-powered Twitter agent designed to energize the Movement Network community. Built on the ElizaOS framework with a customized knowledge base (RAG), it engages users by generating mock MoveDID previews—decentralized identity snapshots featuring a type (e.g., Human, AI Agent) and a fun description—then tweets personalized hype messages to boost participation. Initially off-chain for simplicity, it’s poised for future on-chain integration to create real MoveDIDs, enhancing trust and identity within the Movement ecosystem.
 
-### Add clients
-```
-# in character.ts
-clients: [Clients.TWITTER, Clients.DISCORD],
+----------
 
-# in character.json
-clients: ["twitter", "discord"]
-```
+Core Idea
 
-## Duplicate the .env.example template
+-   Off-Chain (Current): The agent responds to tweets (e.g., “
+    
+    [@MoveDIDBooster](https://x.com/MoveDIDBooster) give me a MoveDID”) with mock MoveDID previews and community hype, using predefined types (Human, Organization, AI Agent, Smart Contract) inspired by MoveDID’s framework. No blockchain required—just pure Twitter engagement powered by ElizaOS and RAG.
+    
+-   On-Chain (Future Enhancement): Integrates with the Movement Network to mint real MoveDIDs via the Aptos SDK, linking Twitter handles to on-chain identities. Users get a verifiable DID (e.g., did:move:0xabc123) tweeted back, tying social activity to the blockchain.
+    
 
-```bash
-cp .env.example .env
-```
+----------
 
-\* Fill out the .env file with your own values.
+Example Workflows
 
-### Add login credentials and keys to .env
-```
-DISCORD_APPLICATION_ID="discord-application-id"
-DISCORD_API_TOKEN="discord-api-token"
-...
-OPENROUTER_API_KEY="sk-xx-xx-xxx"
-...
-TWITTER_USERNAME="username"
-TWITTER_PASSWORD="password"
-TWITTER_EMAIL="your@email.com"
-```
+Off-Chain Workflow (Step 1)
 
-## Install dependencies and start your agent
+1.  User Input: Tweets “[@MoveDIDBooster](https://x.com/MoveDIDBooster) give me a MoveDID.”
+    
+2.  Agent Response: Analyzes the request (or uses preloaded data) and tweets: 
 
-```bash
-pnpm i && pnpm start
-```
-Note: this requires node to be at least version 22 when you install packages and run the agent.
+    “[@UserX](https://x.com/UserX) , your MoveDID preview: Type: Human, Description: #mAInia trailblazer—Movement’s lucky to have you!”
+    
+3.  Outcome: User feels recognized, community buzz grows—all off-chain.
+    
 
-## Run with Docker
+On-Chain Workflow (Future)
 
-### Build and run Docker Compose (For x86_64 architecture)
-
-#### Edit the docker-compose.yaml file with your environment variables
-
-```yaml
-services:
-    eliza:
-        environment:
-            - OPENROUTER_API_KEY=blahdeeblahblahblah
-```
-
-#### Run the image
-
-```bash
-docker compose up
-```
-
-### Build the image with Mac M-Series or aarch64
-
-Make sure docker is running.
-
-```bash
-# The --load flag ensures the built image is available locally
-docker buildx build --platform linux/amd64 -t eliza-starter:v1 --load .
-```
-
-#### Edit the docker-compose-image.yaml file with your environment variables
-
-```yaml
-services:
-    eliza:
-        environment:
-            - OPENROUTER_API_KEY=blahdeeblahblahblah
-```
-
-#### Run the image
-
-```bash
-docker compose -f docker-compose-image.yaml up
-```
-
-# Deploy with Railway
-
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template/aW47_j)
+1.  User Input: Tweets “[@MoveDIDBooster](https://x.com/MoveDIDBooster) give me a MoveDID” and provides a wallet address (e.g., via DM or reply).
+    
+2.  Agent Response: Creates a real MoveDID on the Movement testnet, then tweets: “
+    
+    [@UserX](https://x.com/UserX), your MoveDID is live: did:move:0xabc123! Check it out: [testnet link]. Welcome to Movement!”
+    
+3.  Outcome: User gets a blockchain-verified identity, boosting trust and engagement.
